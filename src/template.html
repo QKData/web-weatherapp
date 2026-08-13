@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Todo List</title>
+</head>
+<body>
+  <header>
+    <h1>My Odin Todo List</h1>
+  </header>
+  
+  <div id="app-container">
+    <!-- Sidebar for Projects -->
+    <aside id="sidebar">
+      <h2>Projects</h2>
+      <ul id="project-list"></ul>
+
+      <!-- NEW: Add Project Form -->
+      <form id="new-project-form">
+        <input type="text" id="project-name" placeholder="New project..." required>
+        <button type="submit">Add</button>
+      </form>
+    </aside>
+
+    <!-- Main Content for Todos -->
+    <main id="main-content">
+      <h2 id="current-project-title">Inbox</h2>
+      <div id="todo-container"></div>
+      <!-- Add this inside <main id="main-content"> in src/template.html -->
+      <form id="new-todo-form">
+        <input type="text" id="todo-title" placeholder="What needs to be done?" required>
+        <input type="text" id="todo-desc" placeholder="Details...">
+        <input type="date" id="todo-date" required>
+        <select id="todo-priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        <button type="submit">Add Task</button>
+      </form>
+    </main>
+  </div>
+  
+  <!-- <script src="main.js"></script> -->
+</body>
+</html>

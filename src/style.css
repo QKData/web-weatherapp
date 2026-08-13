@@ -1,0 +1,226 @@
+/* src/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+--bg-color: #f3f4f6;
+--sidebar-bg: #1f2937;
+--sidebar-text: #f9fafb;
+--card-bg: #ffffff;
+--primary: #4f46e5;
+--primary-hover: #4338ca;
+--danger: #ef4444;
+--text-main: #111827;
+--text-muted: #6b7280;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Inter', sans-serif;
+}
+
+/* --- LAYOUT --- */
+body {
+background-color: var(--bg-color);
+color: var(--text-main);
+display: flex;
+flex-direction: column;
+height: 100vh;
+}
+
+header {
+background-color: var(--card-bg);
+padding: 20px 30px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+z-index: 10;
+}
+
+#app-container {
+display: flex;
+flex: 1;
+overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+#sidebar {
+width: 280px;
+background-color: var(--sidebar-bg);
+color: var(--sidebar-text);
+padding: 30px 20px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+#project-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.project-item {
+padding: 10px 15px;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 8px;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+transition: background 0.2s;
+}
+
+.project-item:hover {
+background: rgba(255, 255, 255, 0.15);
+}
+
+/* --- MAIN CONTENT & FORMS --- */
+#main-content {
+flex: 1;
+padding: 40px;
+overflow-y: auto;
+}
+
+#current-project-title {
+font-size: 2rem;
+margin-bottom: 20px;
+color: var(--primary);
+}
+
+form {
+display: flex;
+gap: 10px;
+margin-bottom: 30px;
+flex-wrap: wrap;
+}
+
+input, select, button {
+padding: 10px 15px;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+font-size: 1rem;
+outline: none;
+}
+
+input:focus, select:focus {
+border-color: var(--primary);
+box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+button {
+background-color: var(--primary);
+color: white;
+border: none;
+cursor: pointer;
+font-weight: 600;
+transition: background 0.2s;
+}
+
+button:hover {
+background-color: var(--primary-hover);
+}
+
+/* --- TODO CARDS --- */
+#todo-container {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 20px;
+}
+
+.todo-card {
+background: var(--card-bg);
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+gap: 12px;
+transition: transform 0.2s;
+}
+
+.todo-card:hover {
+transform: translateY(-2px);
+}
+
+.todo-details {
+display: flex;
+gap: 15px;
+font-size: 0.85rem;
+color: var(--text-muted);
+}
+
+.priority-high { color: var(--danger); font-weight: bold; }
+.priority-medium { color: #d97706; font-weight: bold; }
+.priority-low { color: #059669; font-weight: bold; }
+
+/* --- COMPLETED STATE --- */
+.todo-card.completed {
+opacity: 0.5;
+background: #f9fafb;
+}
+
+.todo-card.completed h3, 
+.todo-card.completed .todo-desc {
+text-decoration: line-through;
+}
+
+/* --- SPECIFIC BUTTONS --- */
+.todo-actions {
+display: flex;
+gap: 10px;
+margin-top: auto;
+padding-top: 10px;
+border-top: 1px solid #f3f4f6;
+}
+
+.delete-btn, .delete-project-btn {
+background-color: var(--danger);
+}
+
+.delete-btn:hover, .delete-project-btn:hover {
+background-color: #dc2626;
+}
+
+.delete-project-btn {
+padding: 4px 8px;
+font-size: 0.8rem;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  /* Change from side-by-side to stacked vertically */
+  #app-container {
+    flex-direction: column;
+    overflow-y: auto; 
+  }
+
+  /* Make the sidebar stretch all the way across */
+  #sidebar {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  /* Reduce padding on the main content for smaller screens */
+  #main-content {
+    padding: 20px;
+    overflow-y: visible;
+  }
+
+  /* Stack the form inputs vertically on mobile */
+  form {
+    flex-direction: column;
+  }
+
+  form input, 
+  form select, 
+  form button {
+    width: 100%;
+  }
+
+  /* Ensure the grid doesn't break on extremely small phones */
+  #todo-container {
+    grid-template-columns: 1fr; 
+  }
+}
