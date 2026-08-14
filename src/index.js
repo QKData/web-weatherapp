@@ -29,7 +29,7 @@ async function getLocation(city = 'london') {
     const rawWeatherData = await response.json();
     const weatherData = processWeatherData(rawWeatherData);
 
-    console.log(weatherData);
+    // console.log(weatherData);
     return weatherData;
   } catch (error) {
     console.error(error);
@@ -37,11 +37,25 @@ async function getLocation(city = 'london') {
   }
 }
 
-// const cityInput = document.querySelector('#city-input');
+const searchForm = document.querySelector('#new-project-form');
+const output = document.querySelector('#weather-output');
 
-// document.querySelector('#search-btn').addEventListener('click', () => {
-//   const city = cityInput.value.trim() || 'london';
-//   getLocation(city);
-// });
+searchForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-getLocation();
+  const city = document.querySelector('#city-input').value.trim() || 'london';
+  const result = await getLocation(city);
+
+  output.textContent = JSON.stringify(result, null, 2);
+
+  // output.innerHTML = `
+  //   <h2>${result.location}</h2>
+  //   <p>${result.conditions}</p>
+  //   <p>Current: ${result.currentTemp}°F</p>
+  //   <p>Feels like: ${result.feelsLike}°F</p>
+  //   <p>High: ${result.highTemp}°F</p>
+  //   <p>Low: ${result.lowTemp}°F</p>
+  //   <p>Humidity: ${result.humidity}%</p>
+  //   <p>Wind: ${result.windSpeed} mph</p>
+  // `;
+});
